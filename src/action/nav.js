@@ -170,6 +170,10 @@ class NavAction {
     this._store.displayCopied = false;
     this._store.route = 'Deposit';
   }
+
+  goGame() {
+    this._store.route = 'Game';
+  }
 }
 
 export default NavAction;

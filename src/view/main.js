@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import Container from '../component/container';
 import { NotificationBar } from '../component/notification';
+import Game from './game';
 import Welcome from './welcome';
 import Loader from './loader';
 import SelectSeed from './select-seed';
@@ -176,6 +177,9 @@ class MainView extends Component {
         )}
         {route === 'TransactionDetail' && (
           <TransactionDetail store={store} nav={nav} />
+        )}
+        {route === 'Game' && (
+            <Game store={store} payment={payment} nav={nav} />
         )}
       </Container>
     );

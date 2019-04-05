@@ -30,7 +30,7 @@ const WelcomeView = () => (
     <View style={styles.wordWrapper}>
       <LightningWord height={31.2} width={245.7} />
     </View>
-    <Text style={styles.subtitle}>By Lightning Labs, INC</Text>
+    <Text style={styles.subtitle}>By Joel Frutiger, Patrick Wyss</Text>
   </Background>
 );
 
