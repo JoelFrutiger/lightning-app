@@ -6,11 +6,12 @@ import Background from '../component/background';
 import MainContent from '../component/main-content';
 import { InputField } from '../component/field';
 import { Header, Title } from '../component/header';
-import { CancelButton, PillButton, Button } from '../component/button';
+import { CancelButton, PillButton, Button, RadioButton } from '../component/button';
 import Card from '../component/card';
 import LightningBoltIcon from '../asset/icon/lightning-bolt';
 import { FormStretcher, FormText, FormSubText } from '../component/form';
 import { color } from '../component/style';
+import { SettingList, SettingItem } from '../component/setting';
 
 const styles = StyleSheet.create({
   description: {
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GameView = ({ store, nav, payment }) => (
+const GameView = ({ store, nav, payment, game }) => (
     <Background image="purple-gradient-bg">
       <Header shadow color={color.purple}>
         <Button disabled onPress={() => {}} />
@@ -38,23 +39,26 @@ const GameView = ({ store, nav, payment }) => (
       <MainContent>
         <Card>
           <FormText style={styles.description}>
-            Paste the Lightning Payment Request or the Bitcoin Address to which
-            you’re sending.
+            Game to connect
           </FormText>
           <FormStretcher>
+            <SettingList>
+                <SettingItem
+                    name={store.connectedGames[0].name}
+                    //onSelect={() => setting.setFiatCurrency({ fiat: 'usd' })}
+                >
+                  <RadioButton selected={true} />
+                </SettingItem>
+            </SettingList>
             <InputField
-                placeholder="Payment Request / Bitcoin Address"
+                placeholder="Username"
                 autoFocus={true}
-                value={store.payment.address}
-                onChangeText={address => payment.setAddress({ address })}
-                onSubmitEditing={() => payment.checkType()}
+                value={store.connectedGames[0].username}
+                onChangeText={username => game.setUsername({ username })}
+                //onSubmitEditing={() => payment.checkType()}
             />
-            <FormSubText style={styles.subText}>
-              Only Lightning Payment Requests or Bitcoin addresses will work at
-              this time.
-            </FormSubText>
           </FormStretcher>
-          <PillButton onPress={() => payment.checkType()}>Next</PillButton>
+          <PillButton onPress={() => game.login()}>Login</PillButton>
         </Card>
       </MainContent>
     </Background>
@@ -64,6 +68,7 @@ GameView.propTypes = {
   store: PropTypes.object.isRequired,
   nav: PropTypes.object.isRequired,
   payment: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired
 };
 
 export default observer(GameView);

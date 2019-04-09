@@ -53,6 +53,7 @@ import {
   setting,
   info,
   autopilot,
+  game
 } from '../action';
 import store from '../store';
 
@@ -179,7 +180,7 @@ class MainView extends Component {
           <TransactionDetail store={store} nav={nav} />
         )}
         {route === 'Game' && (
-            <Game store={store} payment={payment} nav={nav} />
+            <Game store={store} payment={payment} nav={nav} game={game} />
         )}
       </Container>
     );
