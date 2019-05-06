@@ -34,7 +34,6 @@ export const ipc = new IpcAction(window.ipcRenderer);
 export const db = new AppStorage(store, AsyncStorage);
 export const log = new LogAction(store, ipc);
 export const nav = new NavAction(store);
-export const game = new GameAction(store, nav);
 export const grpc = new GrpcAction(store, ipc);
 export const notify = new NotificationAction(store, nav);
 export const wallet = new WalletAction(store, grpc, db, nav, notify);
@@ -45,6 +44,7 @@ export const invoice = new InvoiceAction(store, grpc, nav, notify, Clipboard);
 export const payment = new PaymentAction(store, grpc, nav, notify, Clipboard);
 export const setting = new SettingAction(store, wallet, db, ipc);
 export const autopilot = new AtplAction(store, grpc, info, db, notify);
+export const game = new GameAction(store, nav, payment, notify);
 
 payment.listenForUrl(ipc); // enable incoming url handler
 

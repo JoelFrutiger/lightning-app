@@ -115,6 +115,7 @@ class MainView extends Component {
             invoice={invoice}
             transaction={transaction}
             nav={nav}
+            game = {game}
           />
         )}
         {route === 'Settings' && (

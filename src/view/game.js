@@ -58,7 +58,7 @@ const GameView = ({ store, nav, payment, game }) => (
                 //onSubmitEditing={() => payment.checkType()}
             />
           </FormStretcher>
-          <PillButton onPress={() => game.login()}>Login</PillButton>
+          <PillButton onPress={() => game.login()}>Connect</PillButton>
         </Card>
       </MainContent>
     </Background>

@@ -16,7 +16,7 @@ import {
   BalanceLabelNumeral,
   BalanceLabelUnit,
 } from '../component/label';
-import { Button, GlasButton, DownButton } from '../component/button';
+import {Button, GlasButton, DownButton, PillButton} from '../component/button';
 
 //
 // Home View
@@ -40,6 +40,8 @@ const HomeView = ({
   invoice,
   transaction,
   nav,
+                    game,
+
 }) => {
   const {
     totalBalanceLabel,
@@ -56,6 +58,7 @@ const HomeView = ({
         goGame={() => nav.goGame()}
       />
       <MainContent style={styles.content}>
+        <SmallPillButton onPress={() => game.placeBet()}>Place bet</SmallPillButton>
         <BalanceDisplay
           totalBalanceLabel={totalBalanceLabel}
           unitLabel={unitLabel}
@@ -84,6 +87,7 @@ HomeView.propTypes = {
   invoice: PropTypes.object.isRequired,
   transaction: PropTypes.object.isRequired,
   nav: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
 };
 
 //
