@@ -58,7 +58,7 @@ const HomeView = ({
         goGame={() => nav.goGame()}
       />
       <MainContent style={styles.content}>
-        <SmallPillButton onPress={() => game.placeBet()}>Place bet</SmallPillButton>
+        <PillButton onPress={() => game.placeBet()}>Place bet</PillButton>
         <BalanceDisplay
           totalBalanceLabel={totalBalanceLabel}
           unitLabel={unitLabel}
@@ -237,3 +237,4 @@ HomeHeader.propTypes = {
 };
 
 export default observer(HomeView);
+
