@@ -103,6 +103,7 @@ function createWindow() {
     // Open the DevTools.
     win.webContents.openDevTools();
   } else {
+    options.width += 500;
     win = new BrowserWindow(options);
     win.loadURL(
       url.format({
@@ -111,6 +112,7 @@ function createWindow() {
         slashes: true,
       })
     );
+    win.webContents.openDevTools();
   }
 
   // Emitted when the window is closed.
