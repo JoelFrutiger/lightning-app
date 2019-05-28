@@ -45,7 +45,6 @@ const GameView = ({ store, nav, payment, game }) => (
             <SettingList>
                 <SettingItem
                     name={store.connectedGames[0].name}
-                    //onSelect={() => setting.setFiatCurrency({ fiat: 'usd' })}
                 >
                   <RadioButton selected={true} />
                 </SettingItem>

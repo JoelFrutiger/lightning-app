@@ -44,7 +44,7 @@ export const invoice = new InvoiceAction(store, grpc, nav, notify, Clipboard);
 export const payment = new PaymentAction(store, grpc, nav, notify, Clipboard);
 export const setting = new SettingAction(store, wallet, db, ipc);
 export const autopilot = new AtplAction(store, grpc, info, db, notify);
-export const game = new GameAction(store, nav, payment, notify);
+export const game = new GameAction(store, grpc, nav, payment, notify);
 
 payment.listenForUrl(ipc); // enable incoming url handler
 
