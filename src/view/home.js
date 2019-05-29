@@ -56,6 +56,7 @@ const HomeView = ({
         goDeposit={() => nav.goDeposit()}
         goSettings={() => nav.goSettings()}
         goGame={() => nav.goGame()}
+        placeBet={ () => game.placeBet()}
       />
       <MainContent style={styles.content}>
         <PillButton onPress={() => game.placeBet()}>Place bet</PillButton>
@@ -219,6 +220,9 @@ const HomeHeader = ({ isTestnet, goDeposit, goSettings, goGame }) => (
     </View>
     <Button onPress={goGame} style={headerStyles.gameBtn}>
       <Title title="Connect game" />
+    </Button>
+    <Button onPress={goGame} style={headerStyles.gameBtn}>
+    <Title title="Place Bet" />
     </Button>
     <Button onPress={goSettings} style={headerStyles.settingsBtn}>
       <Icon
