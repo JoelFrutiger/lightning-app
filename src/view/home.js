@@ -59,7 +59,6 @@ const HomeView = ({
         placeBet={ () => game.placeBet()}
       />
       <MainContent style={styles.content}>
-        <PillButton onPress={() => game.placeBet()}>Place bet</PillButton>
         <BalanceDisplay
           totalBalanceLabel={totalBalanceLabel}
           unitLabel={unitLabel}
@@ -207,7 +206,7 @@ const headerStyles = StyleSheet.create({
   },
 });
 
-const HomeHeader = ({ isTestnet, goDeposit, goSettings, goGame }) => (
+const HomeHeader = ({ isTestnet, goDeposit, goSettings, goGame, placeBet }) => (
   <Header separator={Platform.OS === 'web'}>
     <Button onPress={goDeposit} style={headerStyles.depositBtn}>
       <QrIcon height={40 * 0.6} width={39 * 0.6} />
@@ -221,7 +220,7 @@ const HomeHeader = ({ isTestnet, goDeposit, goSettings, goGame }) => (
     <Button onPress={goGame} style={headerStyles.gameBtn}>
       <Title title="Connect game" />
     </Button>
-    <Button onPress={goGame} style={headerStyles.gameBtn}>
+    <Button onPress={placeBet} style={headerStyles.gameBtn}>
     <Title title="Place Bet" />
     </Button>
     <Button onPress={goSettings} style={headerStyles.settingsBtn}>
@@ -238,6 +237,7 @@ HomeHeader.propTypes = {
   goDeposit: PropTypes.func.isRequired,
   goSettings: PropTypes.func.isRequired,
   goGame: PropTypes.func.isRequired,
+  placeBet: PropTypes.func.isRequired,
 };
 
 export default observer(HomeView);

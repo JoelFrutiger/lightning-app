@@ -42,17 +42,19 @@ class GameAction {
       res.on('data', function (body) {
         let data = JSON.parse(body);
         console.log("Body: ", body);
-
-        let address = data.invoicetopay;
-        //let address = "lntb1u1pwtvrxwpp53fmxpznl3rns6x94ryuvqkww5tk2cuunyqy7pn2s5zzzzmv7dpqsdq8w3jhxaqcqzysxqy9gcqra3tca90g4622ktggy4ewxu37673supnq67j5dz87vmhtqh5ld7juve6nr2ccwvu4jtwfq0xg4gdlsfg3mcgs5cnt0ezxxp8qqz6d6sqk9jz3u"
-        _this._store.payment.address = address.replace(PREFIX_REGEX, '');
-        _this._nav.goPay();
-        //console.log('Body: ' + body);
+        if(data.hasOwnProperty("invoicetopay")){
+          let address = data.invoicetopay;
+          _this._store.payment.address = address.replace(PREFIX_REGEX, '');
+          _this._nav.goPay();
+        }
+        else{
+          _this._notification.display({ msg: 'Invalid username or game not active' });
+        }
       });
     });
     req.on('error', function(e) {
       console.log('problem with request: ' + e.message);
-      _this._notification.display({ msg: e.message });
+      _this._notification.display({ type: msg: e.message });
     });
 
     _this._grpc.sendCommand('addInvoice', {
@@ -61,14 +63,15 @@ class GameAction {
       expiry: 172800,
       private: true,
     }).then( response => {
-      console.log(response);
-      console.log(response.paymentRequest);
-      let data = '{"player": "' + _this._store.connectedGames[0].username + '", "playerinvoice": "' + response.paymentRequest + '", "game": "dicegame" }';
-      console.log(data);
-      req.write(data);
-      req.end();
+        console.log("Response: ", response);
+        console.log("Payment request to send: " + response.paymentRequest);
+        let data = '{"player": "' + _this._store.connectedGames[0].username + '", "playerinvoice": "' + response.paymentRequest + '", "game": "dicegame" }';
+        console.log("Sending to server: ", data);
+        req.write(data);
+        req.end();
     }).catch(err => {
       console.log(err);
+      _this._notification.display({ msg: 'Error: ' +  err });
     });
   }
 
