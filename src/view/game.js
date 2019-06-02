@@ -42,6 +42,12 @@ const GameView = ({ store, nav, payment, game }) => (
             Game to connect
           </FormText>
           <FormStretcher>
+            <InputField
+                placeholder="Server Url"
+                autoFocus={true}
+                value={store.gameServerUrl}
+                onChangeText={url => game.setGameServerUrl({ url })}
+            />
             <SettingList>
                 <SettingItem
                     name={store.connectedGames[0].name}

@@ -21,6 +21,10 @@ class GameAction {
     this._nav.goHome();
   }
 
+  setGameServerUrl({ url }) {
+    this._store.gameServerUrl = url;
+  }
+
   setUsername({ username }) {
     this._store.connectedGames[0].username = username;
   }
@@ -29,7 +33,7 @@ class GameAction {
     var _this = this;
     //this._notification.display({ msg: 'Start placing bet' });
     let options = {
-      hostname: 'localhost',
+      hostname: _this._store.gameServerUrl,
       port: 8000,
       path: '/api/players/payment/',
       method: 'POST',
@@ -54,7 +58,7 @@ class GameAction {
     });
     req.on('error', function(e) {
       console.log('problem with request: ' + e.message);
-      _this._notification.display({ type: msg: e.message });
+      _this._notification.display({ msg: e.message });
     });
 
     _this._grpc.sendCommand('addInvoice', {
