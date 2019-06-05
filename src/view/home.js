@@ -40,6 +40,8 @@ const HomeView = ({
   invoice,
   transaction,
   nav,
+                    game,
+
 }) => {
   const {
     totalBalanceLabel,
@@ -53,6 +55,8 @@ const HomeView = ({
         isTestnet={store.network === 'testnet'}
         goDeposit={() => nav.goDeposit()}
         goSettings={() => nav.goSettings()}
+        goGame={() => nav.goGame()}
+        placeBet={ () => game.placeBet()}
       />
       <MainContent style={styles.content}>
         <BalanceDisplay
@@ -83,6 +87,7 @@ HomeView.propTypes = {
   invoice: PropTypes.object.isRequired,
   transaction: PropTypes.object.isRequired,
   nav: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
 };
 
 //
@@ -186,6 +191,9 @@ const headerStyles = StyleSheet.create({
   depositBtn: {
     marginLeft: 3,
   },
+  gameBtn: {
+    marginRight: 9,
+  },
   testnet: {
     fontSize: 10,
     lineHeight: 16,
@@ -199,7 +207,7 @@ const headerStyles = StyleSheet.create({
   },
 });
 
-const HomeHeader = ({ isTestnet, goDeposit, goSettings }) => (
+const HomeHeader = ({ isTestnet, goDeposit, goSettings, goGame, placeBet }) => (
   <Header separator={Platform.OS === 'web'}>
     <Button onPress={goDeposit} style={headerStyles.depositBtn}>
       <QrIcon height={40 * 0.6} width={39 * 0.6} />
@@ -210,6 +218,12 @@ const HomeHeader = ({ isTestnet, goDeposit, goSettings }) => (
       ) : null}
       <Title title="Wallet" />
     </View>
+    <Button onPress={goGame} style={headerStyles.gameBtn}>
+      <Title title="Connect game" />
+    </Button>
+    <Button onPress={placeBet} style={headerStyles.gameBtn}>
+    <Title title="Place Bet" />
+    </Button>
     <Button onPress={goSettings} style={headerStyles.settingsBtn}>
       <Icon
         image={require('../asset/icon/settings.png')}
@@ -223,6 +237,9 @@ HomeHeader.propTypes = {
   isTestnet: PropTypes.bool.isRequired,
   goDeposit: PropTypes.func.isRequired,
   goSettings: PropTypes.func.isRequired,
+  goGame: PropTypes.func.isRequired,
+  placeBet: PropTypes.func.isRequired,
 };
 
 export default observer(HomeView);
+

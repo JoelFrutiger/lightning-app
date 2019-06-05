@@ -12,6 +12,7 @@ import AppStorage from './app-storage';
 import IpcAction from './ipc';
 import GrpcAction from './grpc';
 import NavAction from './nav';
+import GameAction from './game';
 import WalletAction from './wallet';
 import LogAction from './log';
 import InfoAction from './info';
@@ -43,6 +44,7 @@ export const invoice = new InvoiceAction(store, grpc, nav, notify, Clipboard);
 export const payment = new PaymentAction(store, grpc, nav, notify, Clipboard);
 export const setting = new SettingAction(store, wallet, db, ipc);
 export const autopilot = new AtplAction(store, grpc, info, db, notify);
+export const game = new GameAction(store, grpc, nav, payment, notify);
 
 payment.listenForUrl(ipc); // enable incoming url handler
 

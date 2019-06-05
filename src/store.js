@@ -19,6 +19,8 @@ import { DEFAULT_ROUTE, DEFAULT_UNIT, DEFAULT_FIAT } from './config';
 export class Store {
   constructor() {
     extendObservable(this, {
+      connectedGames: [{gameId: 0, name: "DiceGame", username: ''}],
+      gameServerUrl: "localhost",
       navReady: false, // the navigator on mobile is ready
       loaded: false, // Is persistent data loaded
       unlockerReady: false, // Is wallet unlocker running
